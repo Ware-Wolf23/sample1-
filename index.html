@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interactive Tech Quiz</title>
+<style>
+  body {
+    background-color: #333;
+    color: #fff;
+    font-family: Arial, sans-serif;
+  }
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  .button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #3498db;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .button:hover {
+    background-color: #2980b9;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <h1>Choose a Category</h1>
+    <button class="button" onclick="startQuiz('ai')">AI and Robotics</button>
+    <button class="button" onclick="startQuiz('hardware')">Computer Hardware</button>
+    <button class="button" onclick="startQuiz('coding')">Coding Questions</button>
+  </div>
+
+  <script>
+    function startQuiz(category) {
+      window.location.href = category + '.html';
+    }
+  </script>
+</body>
+</html>

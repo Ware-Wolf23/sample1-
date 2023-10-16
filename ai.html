@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI and Robotics Quiz</title>
+<style>
+    body {
+      background-color: #333;
+      color: #fff;
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #444;
+      border-radius: 10px;
+      text-align: center;
+    }
+    .question {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+    .answer-button {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      background-color: #3498db;
+      border: none;
+      border-radius: 5px;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .answer-button:hover {
+      background-color: #2980b9;
+    }
+    .score {
+      font-size: 24px;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+    .back-button {
+      background-color: #e74c3c;
+      margin-top: 20px;
+    }
+    .back-button:hover {
+      background-color: #c0392b;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>AI and Robotics Questions</h1>
+    <div class="question" id="question"></div>
+    <button class="answer-button" onclick="checkAnswer(1)"></button>
+    <button class="answer-button" onclick="checkAnswer(2)"></button>
+    <button class="answer-button" onclick="checkAnswer(3)"></button>
+    <button class="answer-button" onclick="checkAnswer(4)"></button>
+    <div id="score"></div>
+    <button class="back-button" onclick="goBack()">Back</button>
+  </div>
+
+  <script>
+    var questions = [
+      {
+        question: "What does AI stand for?",
+        options: ["Artificial Intelligence", "Advanced Intelligence", "Automated Information", "All Inclusive"],
+        correctAnswer: 1
+      },
+      {
+        question: "Which programming language is commonly used in robotics?",
+        options: ["Python", "C++", "Java", "Ruby"],
+        correctAnswer: 2
+      },
+      {
+        question: "What is a common application of computer vision in robotics?",
+        options: ["Speech Recognition", "Object Recognition", "Natural Language Processing", "Data Analytics"],
+        correctAnswer: 2
+      },
+      {
+        question: "Which type of robot is designed to mimic the physical characteristics and capabilities of a human?",
+        options: ["Android Robot", "Industrial Robot", "Wheeled Robot", "Micro Robot"],
+        correctAnswer: 1
+      },
+      {
+        question: "What is the term for a robot's ability to understand and interpret human speech?",
+        options: ["Speech Synthesis", "Speech Recognition", "Voice Command", "Linguistic Analysis"],
+        correctAnswer: 2
+      },
+      {
+        question: "What is the primary goal of machine learning in AI?",
+        options: ["To make machines self-aware", "To enable machines to learn and make decisions from data", "To create robots with human-like emotions", "To improve battery life in robots"],
+        correctAnswer: 2
+      },
+      {
+        question: "Which famous AI system defeated human champions in the game show Jeopardy!?",
+        options: ["Siri", "Deep Blue", "Watson", "Alexa"],
+        correctAnswer: 3
+      }
+    ];
+
+    var currentQuestion = 0;
+    var score = 0;
+
+    function loadQuestion() {
+      var questionElement = document.getElementById('question');
+      var scoreElement = document.getElementById('score');
+
+      if (currentQuestion >= questions.length) {
+        questionElement.innerHTML = "Quiz completed!";
+        scoreElement.innerHTML = "Final Score: " + score;
+      } else {
+        questionElement.innerHTML = questions[currentQuestion].question;
+        var answerButtons = document.querySelectorAll('.answer-button');
+        for (var i = 1; i <= 4; i++) {
+          answerButtons[i-1].innerHTML = questions[currentQuestion].options[i-1];
+          answerButtons[i-1].style.display = 'inline-block';
+        }
+      }
+    }
+
+    function checkAnswer(option) {
+      if (option === questions[currentQuestion].correctAnswer) {
+        score++;
+      }
+      currentQuestion++;
+      loadQuestion();
+    }
+
+    function goBack() {
+      window.history.back();
+    }
+
+    loadQuestion();
+  </script>
+</body>
+</html>
+
+

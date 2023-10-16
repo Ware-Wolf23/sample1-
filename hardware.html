@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Computer Hardware Quiz</title>
+<style>
+    body {
+      background-color: #333;
+      color: #fff;
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #444;
+      border-radius: 10px;
+      text-align: center;
+    }
+    .question {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+    .answer-button {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      background-color: #3498db;
+      border: none;
+      border-radius: 5px;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .answer-button:hover {
+      background-color: #2980b9;
+    }
+    .score {
+      font-size: 24px;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+    .back-button {
+      background-color: #e74c3c;
+      margin-top: 20px;
+    }
+    .back-button:hover {
+      background-color: #c0392b;
+    }
+  </style> 
+
+</head>
+<body>
+  <div class="container">
+    <h1>Computer Hardware Questions</h1>
+    <div class="question" id="question"></div>
+    <button class="answer-button" onclick="checkAnswer(1)"></button>
+    <button class="answer-button" onclick="checkAnswer(2)"></button>
+    <button class="answer-button" onclick="checkAnswer(3)"></button>
+    <button class="answer-button" onclick="checkAnswer(4)"></button>
+    <div id="score"></div>
+    <button class="back-button" onclick="goBack()">Back</button>
+  </div>
+
+  <script>
+    var questions = [
+      {
+        question: "What is the primary function of the CPU in a computer?",
+        options: ["Processing data", "Storing files", "Displaying graphics", "Playing audio"],
+        correctAnswer: 1
+      },
+      {
+        question: "What does RAM stand for?",
+        options: ["Random Access Memory", "Read-Only Memory", "Remote Access Module", "Rapid Application Manager"],
+        correctAnswer: 1
+      },
+      {
+        question: "What is the purpose of a GPU in a computer?",
+        options: ["To handle graphics processing tasks", "To manage network connections", "To store data long-term", "To power the computer's display"],
+        correctAnswer: 1
+      },
+      {
+        question: "Which component is responsible for storing data permanently in a computer?",
+        options: ["Hard Disk Drive (HDD)", "Random Access Memory (RAM)", "Central Processing Unit (CPU)", "Solid State Drive (SSD)"],
+        correctAnswer: 4
+      },
+      {
+        question: "What is the function of a motherboard in a computer?",
+        options: ["To connect and communicate between hardware components", "To provide power to the computer", "To display images on the screen", "To store data for quick access"],
+        correctAnswer: 1
+      },
+      {
+        question: "Which of the following is not a type of computer port?",
+        options: ["USB", "HDMI", "Gigabit", "Ethernet"],
+        correctAnswer: 3
+      },
+      {
+        question: "What is the purpose of a power supply unit (PSU) in a computer?",
+        options: ["To convert electrical power into a form usable by the computer", "To cool down the computer components", "To store large amounts of data", "To connect external devices"],
+        correctAnswer: 1
+      }
+    ];
+
+    var currentQuestion = 0;
+    var score = 0;
+
+    function loadQuestion() {
+      var questionElement = document.getElementById('question');
+      var scoreElement = document.getElementById('score');
+
+      if (currentQuestion >= questions.length) {
+        questionElement.innerHTML = "Quiz completed!";
+        scoreElement.innerHTML = "Final Score: " + score;
+      } else {
+        questionElement.innerHTML = questions[currentQuestion].question;
+        var answerButtons = document.querySelectorAll('.answer-button');
+        for (var i = 1; i <= 4; i++) {
+          answerButtons[i-1].innerHTML = questions[currentQuestion].options[i-1];
+          answerButtons[i-1].style.display = 'inline-block';
+        }
+      }
+    }
+
+    function checkAnswer(option) {
+      if (option === questions[currentQuestion].correctAnswer) {
+        score++;
+      }
+      currentQuestion++;
+      loadQuestion();
+    }
+
+    function goBack() {
+      window.history.back();
+    }
+
+    loadQuestion();
+  </script>
+</body>
+</html>
+

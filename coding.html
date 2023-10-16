@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coding Questions Quiz</title>
+<style>
+    body {
+      background-color: #333;
+      color: #fff;
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #444;
+      border-radius: 10px;
+      text-align: center;
+    }
+    .question {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+    .answer-button {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      background-color: #3498db;
+      border: none;
+      border-radius: 5px;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .answer-button:hover {
+      background-color: #2980b9;
+    }
+    .score {
+      font-size: 24px;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+    .back-button {
+      background-color: #e74c3c;
+      margin-top: 20px;
+    }
+    .back-button:hover {
+      background-color: #c0392b;
+    }
+  </style>
+
+</head>
+<body>
+  <div class="container">
+    <h1>Coding Questions</h1>
+    <div class="question" id="question"></div>
+    <button class="answer-button" onclick="checkAnswer(1)"></button>
+    <button class="answer-button" onclick="checkAnswer(2)"></button>
+    <button class="answer-button" onclick="checkAnswer(3)"></button>
+    <button class="answer-button" onclick="checkAnswer(4)"></button>
+    <div id="score"></div>
+    <button class="back-button" onclick="goBack()">Back</button>
+  </div>
+
+  <script>
+    var questions = [
+      {
+        question: "What does HTML stand for?",
+        options: ["Hypertext Markup Language", "Hyperlinks and Text Markup Language", "Home Tool Markup Language", "Hypertext Markdown Language"],
+        correctAnswer: 1
+      },
+      {
+        question: "Which programming language is often used for web development?",
+        options: ["Python", "C++", "Java", "JavaScript"],
+        correctAnswer: 4
+      },
+      {
+        question: "What is the purpose of CSS in web development?",
+        options: ["To control the style and layout of a webpage", "To perform calculations", "To handle server-side logic", "To manage databases"],
+        correctAnswer: 1
+      },
+      {
+        question: "Which programming language is known for its versatility and ease of learning?",
+        options: ["Python", "C#", "Assembly Language", "Swift"],
+        correctAnswer: 1
+      },
+      {
+        question: "What does 'DOM' stand for in web development?",
+        options: ["Document Object Model", "Data Object Model", "Digital Object Model", "Dynamic Object Model"],
+        correctAnswer: 1
+      },
+      {
+        question: "Which of the following is NOT a valid CSS selector?",
+        options: ["#myElement", ".myClass", "&lt;p&gt;", "div.myDiv"],
+        correctAnswer: 3
+      },
+      {
+        question: "What does 'HTTP' stand for in a web address?",
+        options: ["Hypertext Transfer Protocol", "Hyperlink Text Transfer Protocol", "Hypertext Text Transfer Protocol", "Hyper Transfer Text Protocol"],
+        correctAnswer: 1
+      }
+    ];
+
+    var currentQuestion = 0;
+    var score = 0;
+
+    function loadQuestion() {
+      var questionElement = document.getElementById('question');
+      var scoreElement = document.getElementById('score');
+
+      if (currentQuestion >= questions.length) {
+        questionElement.innerHTML = "Quiz completed!";
+        scoreElement.innerHTML = "Final Score: " + score;
+      } else {
+        questionElement.innerHTML = questions[currentQuestion].question;
+        var answerButtons = document.querySelectorAll('.answer-button');
+        for (var i = 1; i <= 4; i++) {
+          answerButtons[i-1].innerHTML = questions[currentQuestion].options[i-1];
+          answerButtons[i-1].style.display = 'inline-block';
+        }
+      }
+    }
+
+    function checkAnswer(option) {
+      if (option === questions[currentQuestion].correctAnswer) {
+        score++;
+      }
+      currentQuestion++;
+      loadQuestion();
+    }
+
+    function goBack() {
+      window.history.back();
+    }
+
+    loadQuestion();
+  </script>
+</body>
+</html>
+
